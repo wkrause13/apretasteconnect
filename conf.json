@@ -1,0 +1,7 @@
+{
+  "databaseIP":"127.0.0.1",
+  "databaseUser":"apretaste",
+  "databasePassword":"heycuba",
+  "databaseName":"apretaste",
+  "isProduction": false
+}
