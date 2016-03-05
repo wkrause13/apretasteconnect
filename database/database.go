@@ -1,7 +1,7 @@
 package database
 
 import (
-	"jsonapi/model"
+	"apretasteconnect/model"
 
 	"github.com/jinzhu/gorm"
 )

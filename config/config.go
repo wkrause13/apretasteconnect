@@ -17,7 +17,7 @@ type Config struct {
 var ConfigData Config
 
 func ParseConfig() Config {
-	file, err := ioutil.ReadFile("/Users/wkrause/Documents/go/src/apretaste/conf.json")
+	file, err := ioutil.ReadFile("/root/go/src/apretasteconnect/conf.json")
 	if err != nil {
 		log.Fatal("Could not find config file")
 	}

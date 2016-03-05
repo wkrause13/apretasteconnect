@@ -1,7 +1,7 @@
 package main
 
 import (
-	"apretaste/handler"
+	"apretasteconnect/handler"
 
 	"github.com/julienschmidt/httprouter"
 )
@@ -15,6 +15,11 @@ type Route struct {
 type Routes []Route
 
 var routes = Routes{
+	Route{
+		"GET",
+		"index",
+		handler.Index,
+	},
 	Route{
 		"POST",
 		"login",

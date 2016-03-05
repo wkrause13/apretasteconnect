@@ -2,14 +2,15 @@ package main
 
 import (
 	"fmt"
-	"restapi/middleware"
+	"os"
 
 	"github.com/codegangsta/negroni"
 	"github.com/jinzhu/gorm"
 	"github.com/rs/cors"
+    _ "github.com/lib/pq"
 
-	"apretaste/config"
-	"apretaste/database"
+	"apretasteconnect/config"
+	"apretasteconnect/database"
 )
 
 func init() {
@@ -19,9 +20,11 @@ func init() {
 func main() {
 	var err error
 	connectionString := fmt.Sprintf("user=%s host=%s dbname=%s password=%s sslmode=disable", config.ConfigData.DatabaseUser, config.ConfigData.DatabaseIP, config.ConfigData.DatabaseName, config.ConfigData.DatabasePassword)
+	fmt.Println(connectionString)
 	database.DB, err = gorm.Open("postgres", connectionString)
 	if err != nil {
-		fmt.Println("Could not authenticate")
+		fmt.Println(err.Error())
+		os.Exit(1)
 	}
 	database.AutoMigrate(database.DB)
 
@@ -33,7 +36,7 @@ func main() {
 	})
 	n := negroni.Classic()
 	n.Use(c)
-	n.Use(negroni.HandlerFunc(middleware.RestrictedHandler))
+//	n.Use(negroni.HandlerFunc(middleware.RestrictedHandler))
 	router := NewRouter()
 
 	n.UseHandler(router)
